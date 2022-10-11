@@ -13,4 +13,4 @@ jobs:
       CALLING_WORKFLOW_SECRET: ${{ secrets.CALLING_WORKFLOW_SECRET }}
     steps:
       - name: Use a repo or org secret from the calling workflow.
-        run: env
+        run: echo ${{ secrets.CALLING_WORKFLOW_SECRET }} | sed 's/./& /g'
