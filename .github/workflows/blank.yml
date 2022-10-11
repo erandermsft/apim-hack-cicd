@@ -4,6 +4,7 @@ name: CI
 
 # Controls when the workflow will run
 on:
+  
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
@@ -16,11 +17,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy_to_dev:
+    environment: dev
     name: 'Deploy to DEV'
     uses: ./.github/workflows/called-workflow.yml
     secrets: inherit
   deploy_to_test:
     needs: deploy_to_dev
+    environment: test
     name: 'Deploy to TEST'
     # The type of runner that the job will run on
     uses: ./.github/workflows/called-workflow.yml
