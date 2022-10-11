@@ -13,12 +13,4 @@ jobs:
       CALLING_WORKFLOW_SECRET = ${{ secrets.CALLING_WORKFLOW_SECRET }}
     steps:
       - name: Use a repo or org secret from the calling workflow.
-<<<<<<< HEAD
         run: env
-=======
-        if: secrets.CALLING_WORKFLOW_SECRET == 'TEST
-        run: echo 'SECRET IS TEST'
-      - name: Use a repo or org secret from the calling workflow.
-        if: secrets.CALLING_WORKFLOW_SECRET == 'DEV'
-        run: echo 'SECRET IS DEV'
->>>>>>> 554f3435b9656a10cc11ad13796080777e2a1544
