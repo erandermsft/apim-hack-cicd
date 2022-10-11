@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
-      CALLING_WORKFLOW_SECRET = ${{ secrets.CALLING_WORKFLOW_SECRET }}
+      CALLING_WORKFLOW_SECRET: ${{ secrets.CALLING_WORKFLOW_SECRET }}
     steps:
       - name: Use a repo or org secret from the calling workflow.
         run: env
