@@ -11,8 +11,8 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
       - name: Use a repo or org secret from the calling workflow.
-        if: ${{ secrets.CALLING_WORKFLOW_SECRET == 'TEST' }}
+        if: secrets.CALLING_WORKFLOW_SECRET == 'TEST
         run: echo 'SECRET IS TEST'
       - name: Use a repo or org secret from the calling workflow.
-        if: ${{ secrets.CALLING_WORKFLOW_SECRET == 'DEV' }}
+        if: secrets.CALLING_WORKFLOW_SECRET == 'DEV'
         run: echo 'SECRET IS DEV'
