@@ -7,8 +7,6 @@ on:
      - '.github/workflows/*'
   
  workflow_call:
-    branches:
-     - main
     inputs:
      environment:
         type: string

@@ -4,8 +4,8 @@ on:
    paths:
      - 'api/CustomerAPI/**'
      - '.github/workflows/*'
-   branches:
-       - '!main'
+  #  branches:
+  #      - '!main'
   pull_request:
     branches:
      - main
