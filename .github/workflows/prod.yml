@@ -31,7 +31,6 @@ jobs:
     uses: ./.github/workflows/final-main.yml
     secrets: inherit
     with:
-      template: ${{ inputs.directory }}/Bicep/main.bicep   
       name: ${{ inputs.name }}
       environment: 'prod'
   deploy_to_dev:
@@ -40,7 +39,6 @@ jobs:
     uses: ./.github/workflows/final-main.yml
     secrets: inherit
     with:
-      template: ${{ inputs.directory }}/Bicep/main.bicep   
       name: ${{ inputs.name }}
       environment: ''
   # build:
