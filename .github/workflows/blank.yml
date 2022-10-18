@@ -15,6 +15,12 @@ on:
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  deploy_to_noenv:
+    name: 'noenv'
+    uses: ./.github/workflows/called-workflow.yml
+    with:
+      environment: ''
+    secrets: inherit
   deploy_to_dev:
     name: 'DEV'
     uses: ./.github/workflows/called-workflow.yml
