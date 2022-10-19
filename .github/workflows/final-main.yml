@@ -1,5 +1,5 @@
 #on: [workflow_dispatch]
-name: Customer Api
+name: Customer API CI/CD
 on:
  workflow_call:
     inputs:
