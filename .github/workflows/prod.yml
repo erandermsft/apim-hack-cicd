@@ -1,29 +1,12 @@
-name: PROD
+name: Deploy
 on:
   push:
    paths:
      - 'api/CustomerAPI/**'
      - '.github/workflows/*'
-  #  branches:
-  #      - '!main'
   pull_request:
     branches:
      - main
-  # workflow_dispatch:
-   
-  #   inputs:
-  #     name: 
-  #       description: 'Name of the environment'
-  #       required: true
-  #       default: 'erandeprod'
-  #     directory:
-  #       description: 'Directory of the template'
-  #       required: true
-  #       default: 'api/CustomerAPI'
-  #     containerappname:
-  #       description: 'Directory of the template'
-  #       required: true
-  #       default: 'ca-customerapi'
 jobs:
   deploy_to_prod:
     if: github.event.pull_request.merged == true && github.branch == 'main'
@@ -34,58 +17,11 @@ jobs:
       name: 'erandeprod'
       environment: 'prod'
   deploy_to_dev:
-    if: github.branch != 'main'
+    if: github.branch != 'main' && github.event.pull_request.merged == false
     name: 'DEV'
     uses: ./.github/workflows/final-main.yml
     secrets: inherit
     with:
       name: 'erande'
       environment: ''
-  # build:
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #   env:
-  #     directory: ${{inputs.directory}}
-  #     name: ${{inputs.name}}
-      
-  #   steps:
-  #   - uses: actions/checkout@main
-
-  #   - name: Log into Azure
-  #     uses: azure/login@v1
-  #     with:
-  #       creds: ${{ secrets.AZURE_CREDENTIALS }} 
-
-  #   - name: Build image with Azure Container Registry
-  #     uses: azure/CLI@v1
-  #     with:
-  #       azcliversion: latest
-  #       inlineScript: |
-  #         az acr build --registry acr${{ env.name }}.azurecr.io --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile 
-
-  #   - name: Use dotnet tools to build and generate swagger
-  #     run: |
-  #       dotnet tool restore --tool-manifest .config/dotnet-tools.json
-  #       dotnet restore 
-  #       dotnet build
-  #       dotnet swagger tofile --output $GITHUB_WORKSPACE/api/CustomerAPI/swagger-output/swagger.json $GITHUB_WORKSPACE/api/CustomerAPI/bin/Debug/net6.0/CustomerAPI.dll v1
-  #     working-directory: ${{ env.directory }}
-
-  #   - name: Upload swagger to Azure storage account
-  #     uses: azure/CLI@v1
-  #     with:
-  #       azcliversion: latest
-  #       inlineScript: |
-  #         az storage blob upload -f $GITHUB_WORKSPACE/api/CustomerAPI/swagger-output/swagger.json -n swagger.json -c apidefinitions --overwrite --connection-string ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-  # deploy_to_prod:
-  #   needs: build
-  #   name: 'PROD'
-  #   uses: ./.github/workflows/containerapp-bluegreen.yml
-  #   secrets: inherit
-  #   with:
-  #     resourceGroupName: rg-${{ inputs.name }}               # Resource group
-  #     template: ${{ inputs.directory }}/Bicep/main.bicep   
-  #     containerappname: ca-customerapi
-  #     name: ${{ inputs.name }} 
-    # environment: prod
  
