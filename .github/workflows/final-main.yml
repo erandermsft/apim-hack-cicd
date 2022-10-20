@@ -12,8 +12,8 @@ on:
         description: 'Name of the environment'
         required: true
  push:
-    branches:
-      - '!main'
+    branches-ignore:
+      - 'main'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
