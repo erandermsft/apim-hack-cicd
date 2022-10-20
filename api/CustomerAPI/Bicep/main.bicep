@@ -2,7 +2,7 @@ param name string
 param location string = resourceGroup().location
 param dockerimagetag string
 param apidefinitionurl string = '' 
-param existing_revision string
+param existing_revision string = ''
 
 
 

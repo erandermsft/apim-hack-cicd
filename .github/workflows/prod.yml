@@ -1,9 +1,13 @@
 name: Customer API
 on:
+  #Deploy to DEV on pushes to all branches EXCEPT main
   push:
    paths:
      - 'api/CustomerAPI/**'
      - '.github/workflows/*'
+   branches-ignore:
+      - 'main'
+  #Deploy to PROD on PRs to main
   pull_request:
     branches:
      - main
