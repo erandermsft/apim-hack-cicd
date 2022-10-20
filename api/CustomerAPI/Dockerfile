@@ -17,3 +17,4 @@ COPY --from=build-env /app/out .
 
 # Start
 ENTRYPOINT ["dotnet", "CustomerAPI.dll"]
+
