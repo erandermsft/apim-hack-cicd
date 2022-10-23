@@ -9,8 +9,9 @@ on:
       - 'main'
   #Deploy to PROD on PRs to main
   pull_request:
+    types: [closed]
     branches:
-     - main
+      - 'main'   
 jobs:
   deploy_to_prod:
     if: github.event.pull_request.merged == true && github.branch == 'main'
