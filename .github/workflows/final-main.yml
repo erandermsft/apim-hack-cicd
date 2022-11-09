@@ -1,16 +1,18 @@
-#on: [workflow_dispatch]
 name: Customer API CI/CD
 on:
+ push:
+      branches-ignore:
+        - 'main'
  workflow_call:
     inputs:
      environment:
         type: string
         description: 'Name of the environment'
-        required: true
+        default: ''
      name:
         type: string
         description: 'Name of the environment'
-        required: true
+        default: 'dev'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
