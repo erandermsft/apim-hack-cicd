@@ -25,7 +25,6 @@ namespace CustomerAPI
                 {
                     logger.LogInformation("Database migration started.");
                     var context = scope.ServiceProvider.GetService<CustomerContext>();
-                    //context.Database.EnsureDeleted();
                     context.Database.Migrate();
                     logger.LogInformation("Database migration finished.");
                 }
