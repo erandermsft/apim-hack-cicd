@@ -1,20 +1,16 @@
 name: Customer API
 on:
-  #Deploy to DEV on pushes to all branches EXCEPT main
   push:
    paths:
      - 'api/CustomerAPI/**'
      - '.github/workflows/*'
-   branches-ignore:
-      - 'main'
   #Deploy to PROD on PRs to main
   pull_request:
-    types: [closed]
-    branches:
-      - 'main'   
+    types: [opened]
+    
 jobs:
   deploy_to_prod:
-    if: github.event.pull_request.merged == true && github.branch == 'main'
+    if: github.event_name =='push' && github.branch == 'main'
     name: 'PROD'
     uses: ./.github/workflows/final-main.yml
     secrets: inherit
@@ -22,7 +18,7 @@ jobs:
       name: 'erandeprod'
       environment: 'prod'
   deploy_to_dev:
-    if: github.branch != 'main' && github.event_name =='push'
+    if: github.branch != 'main'
     name: 'DEV'
     uses: ./.github/workflows/final-main.yml
     secrets: inherit
