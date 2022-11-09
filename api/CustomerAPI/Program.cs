@@ -23,6 +23,7 @@ namespace CustomerAPI
                 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
                 try
                 {
+                    
                     logger.LogInformation("Database migration started.");
                     var context = scope.ServiceProvider.GetService<CustomerContext>();
                     context.Database.Migrate();
