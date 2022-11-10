@@ -1,0 +1,14 @@
+name: Dev deploy
+on:
+  push:
+    branches-ignore:
+    - 'main'
+
+jobs:
+   deploy_to_prod:
+    name: 'Production deployment'
+    uses: ./.github/workflows/final-main.yml
+    secrets: inherit
+    with:
+      name: erande
+      environment: 'dev'
