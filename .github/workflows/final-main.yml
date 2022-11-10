@@ -3,6 +3,9 @@ on:
  push:
       branches-ignore:
         - 'main'
+      paths:
+        - 'api/CustomerAPI/**' 
+        - '.github/workflows/*'     
  workflow_call:
     inputs:
      environment:
